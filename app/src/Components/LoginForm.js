@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import * as yup from 'yup'
-import formSchema from '../Validation/formSchema'
+import loginSchema from '../Validation/loginSchema'
+import Post from './Post'
 
 const initialLoginValues = {
   username: '',
@@ -25,12 +26,29 @@ export default function Login(props){
   const [disabled, setDisabled] = useState(initialDisabled)
 
 
+
+
+
+  /////////////////
+
+
+
+  const [posts, setPosts] =useState([])
+  axios.get('https://expatjournal-one.herokuapp.com/api/stories')
+      .then(res => {
+          setPosts(res.data)
+      })
+
+
+
+
+
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
 
   const postLogin = userLogin => {
-    axios.post('https://google.com', userLogin)
+    axios.post('https://expatjournal-one.herokuapp.com/api/auth/login', userLogin)
       .then(res => {
         setCredentials([res.data, ...credentials])
       })
@@ -44,7 +62,7 @@ export default function Login(props){
 
 
   useEffect(()=> {
-    formSchema.isValid(loginValues)
+    loginSchema.isValid(loginValues)
     .then(valid => {
       setDisabled(!valid)
     })
@@ -60,7 +78,7 @@ export default function Login(props){
     const value = evt.target.value
 
     yup
-      .reach(formSchema, name)
+      .reach(loginSchema, name)
       .validate(value)
       .then(valid => {
         setLoginErrors({
@@ -101,7 +119,7 @@ export default function Login(props){
           
             <form onSubmit={onLoginSubmit}>
               <div>
-                <label> Username:
+                <label> Username:&nbsp;
                   <input
                   type='text'
                   name='username'
@@ -111,7 +129,7 @@ export default function Login(props){
                 <div>{loginErrors.username}</div>
 
               <div>
-                <label> Password:
+                <label> Password:&nbsp;
                   <input
                     type='password'
                     name='password'
@@ -122,7 +140,17 @@ export default function Login(props){
               </div>
               <button disabled={disabled}>Login</button>
             </div>
+            <div>
+              {
+                posts.map(post => {
+                  return(
+                    <Post info={post}/>
+                  )
+                })
+              }
+            </div>
           </form>
+          
             
     );
   }
