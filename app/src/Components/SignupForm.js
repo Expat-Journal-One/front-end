@@ -99,7 +99,7 @@ export default function Signup(){
             <form onSubmit={onSignupSubmit}>
               <div>
 
-              <label> Name:
+              <label> Name:&nbsp;
                   <input
                   type='text'
                   name='name'
@@ -108,7 +108,7 @@ export default function Signup(){
                 </label>
                 <div>{signupErrors.name}</div>
 
-                <label> Username:
+                <label> Username:&nbsp;
                   <input
                   type='text'
                   name='username'
@@ -117,7 +117,7 @@ export default function Signup(){
                 </label>
                 <div>{signupErrors.username}</div>
 
-                <label> Email:
+                <label> Email:&nbsp;
                   <input
                   type='email'
                   name='email'
@@ -127,7 +127,7 @@ export default function Signup(){
                 <div>{signupErrors.email}</div>
 
               
-                <label> Password:
+                <label> Password:&nbsp;
                   <input
                     type='password'
                     name='password'
