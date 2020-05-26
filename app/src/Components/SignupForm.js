@@ -4,12 +4,16 @@ import * as yup from 'yup'
 import formSchema from '../Validation/formSchema'
 
 const initialSignupValues = {
+  name: '',
   username: '',
+  email: '',
   password: '',
 }
 
 const initialSignupErrors = {
+  name: '',
   username: '',
+  email: '',
   password: '',
 }
 
@@ -17,7 +21,7 @@ const initialCredentials = []
 
 const initialDisabled = true
 
-export default function Signup(props){
+export default function Signup(){
 
   const [credentials, setCredentials] = useState(initialCredentials)
   const [signupValues, setSignupValues] = useState(initialSignupValues)
@@ -32,10 +36,12 @@ export default function Signup(props){
   const postSignup = userSignup => {
     axios.post('https://expatjournal-one.herokuapp.com/api/auth/register', userSignup)
       .then(res => {
-        initialCredentials([res.data, ...credentials])
+        setCredentials([res.data, ...credentials])
+        
       })
       .catch(err => {
         console.log(err)
+        console.log(userSignup)
       })
       .finally(() => {
         setSignupValues(initialSignupValues)
@@ -84,17 +90,24 @@ export default function Signup(props){
     evt.preventDefault()
 
     const newUser = {
-      name: signupValues.username.trim(),
+      username: signupValues.username.trim(),
       password: signupValues.password.trim(),
     }
-    console.log(newUser)
     postSignup(newUser)
   }
-
         return (
-          
             <form onSubmit={onSignupSubmit}>
               <div>
+
+              <label> Name:
+                  <input
+                  type='text'
+                  name='name'
+                  value={signupValues.name}
+                  onChange={onSignupChange} />
+                </label>
+                <div>{signupErrors.name}</div>
+
                 <label> Username:
                   <input
                   type='text'
@@ -104,7 +117,16 @@ export default function Signup(props){
                 </label>
                 <div>{signupErrors.username}</div>
 
-              <div>
+                <label> Email:
+                  <input
+                  type='email'
+                  name='email'
+                  value={signupValues.email}
+                  onChange={onSignupChange} />
+                </label>
+                <div>{signupErrors.email}</div>
+
+              
                 <label> Password:
                   <input
                     type='password'
@@ -113,11 +135,9 @@ export default function Signup(props){
                     onChange={onSignupChange} />  
                 </label>
                 <div>{signupErrors.password}</div>
-              </div>
               <button disabled={disabled}>Sign up</button>
             </div>
           </form>
-            
     );
   }
 

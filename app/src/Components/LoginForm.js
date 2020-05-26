@@ -32,7 +32,7 @@ export default function Login(props){
   const postLogin = userLogin => {
     axios.post('https://google.com', userLogin)
       .then(res => {
-        initialCredentials([res.data, ...credentials])
+        setCredentials([res.data, ...credentials])
       })
       .catch(err => {
         console.log(err)
