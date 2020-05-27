@@ -150,15 +150,7 @@ export default function Login(props){
               <button>Login</button>
               {/* disabled={disabled} */}
             </div>
-             {/* <div>
-              {
-                posts.map(post => {
-                  return(
-                    <Post info={post}/>
-                  )
-                })
-              }
-            </div> */}
+             
           </form>
           
             
