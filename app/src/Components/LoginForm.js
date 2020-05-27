@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+// import axios from 'axios';
+import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
-import Post from './Post'
+// import Post from './Post'
+import { useHistory } from 'react-router-dom';
 
 const initialLoginValues = {
   username: '',
@@ -33,11 +35,11 @@ export default function Login(props){
 
 
 
-  const [posts, setPosts] =useState([])
-  axios.get('https://expatjournal-one.herokuapp.com/api/stories')
-      .then(res => {
-          setPosts(res.data)
-      })
+  // const [posts, setPosts] =useState([])
+  // axios.get('https://expatjournal-one.herokuapp.com/api/stories')
+  //     .then(res => {
+  //         setPosts(res.data)
+  //     })
 
 
 
@@ -46,11 +48,18 @@ export default function Login(props){
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
-
-  const postLogin = userLogin => {
-    axios.post('https://expatjournal-one.herokuapp.com/api/auth/login', userLogin)
+  const { push } = useHistory();
+  const postLogin = userLogin  => {
+    
+    axiosWithAuth()
+    .post('https://expatjournal-one.herokuapp.com/api/auth/login', userLogin)
       .then(res => {
+        console.log(res)
         setCredentials([res.data, ...credentials])
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+        localStorage.setItem('user_id', JSON.stringify(res.data.id));
+         push('/userpage');
+         window.location.reload();
       })
       .catch(err => {
         console.log(err)
@@ -72,7 +81,7 @@ export default function Login(props){
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
-
+ 
   const onLoginChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
@@ -138,9 +147,10 @@ export default function Login(props){
                 </label>
                 <div>{loginErrors.password}</div>
               </div>
-              <button disabled={disabled}>Login</button>
+              <button>Login</button>
+              {/* disabled={disabled} */}
             </div>
-            <div>
+             {/* <div>
               {
                 posts.map(post => {
                   return(
@@ -148,7 +158,7 @@ export default function Login(props){
                   )
                 })
               }
-            </div>
+            </div> */}
           </form>
           
             

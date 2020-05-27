@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { axiosWithAuth } from '../Utils/AxiosWithAuth';
 import * as yup from 'yup'
 import formSchema from '../Validation/formSchema'
+import { useHistory } from 'react-router-dom';
 
 const initialSignupValues = {
   name: '',
@@ -32,12 +33,14 @@ export default function Signup(){
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
-
+  const { push } = useHistory();
   const postSignup = userSignup => {
-    axios.post('https://expatjournal-one.herokuapp.com/api/auth/register', userSignup)
+    axiosWithAuth()
+    .post('https://expatjournal-one.herokuapp.com/api/auth/register', userSignup)
       .then(res => {
         setCredentials([res.data, ...credentials])
-        
+        push('/Login');
+        window.location.reload();
       })
       .catch(err => {
         console.log(err)
