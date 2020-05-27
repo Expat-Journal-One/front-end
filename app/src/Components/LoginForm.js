@@ -30,21 +30,6 @@ export default function Login(props){
 
 
 
-
-  /////////////////
-
-
-
-  // const [posts, setPosts] =useState([])
-  // axios.get('https://expatjournal-one.herokuapp.com/api/stories')
-  //     .then(res => {
-  //         setPosts(res.data)
-  //     })
-
-
-
-
-
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
@@ -107,10 +92,6 @@ export default function Login(props){
       [name]: value
     })
 
-    setLoginValues({
-      ...loginValues,
-      [name]: value
-    })
   }
 
   const onLoginSubmit = evt => {
@@ -149,17 +130,9 @@ export default function Login(props){
                 <div>{loginErrors.password}</div>
               </div>
               <button disabled={disabled}>Login</button>
-              {/*  */}
+              
             </div>
-             {/* <div>
-              {
-                posts.map(post => {
-                  return(
-                    <Post info={post}/>
-                  )
-                })
-              }
-            </div> */}
+             
           </form>
           
             
