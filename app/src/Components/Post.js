@@ -29,7 +29,8 @@ align-self:grow;
 height:800px;
 width: 66%;
 border-radius: 20px;
-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.40);
+box-shadow: 12px 4px 15px -5px #000000;
+
 
 `
 const StyledH2 = styled.h2`
