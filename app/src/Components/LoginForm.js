@@ -108,7 +108,7 @@ export default function Login(props){
     evt.preventDefault()
 
     const newUser = {
-      name: loginValues.username.trim(),
+      username: loginValues.username.trim(),
       password: loginValues.password.trim(),
     }
     console.log(newUser)
