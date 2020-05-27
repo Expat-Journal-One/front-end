@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios';
-import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
+// import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 // import Post from './Post'
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const initialPostValues = {
   title: '',
@@ -120,7 +120,6 @@ export default function CreatePost(){
                     type='text'
                     name='img'
                     value={createBlogPost.img} //most likely needs to be changed to src and not value
-
                     onChange={onContentChange} />  
                 </label>
               </div>

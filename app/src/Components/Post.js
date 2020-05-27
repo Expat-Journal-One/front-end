@@ -48,6 +48,7 @@ height:600px;
 width: 66%;
 border-radius: 20px;
 box-shadow: 12px 4px 15px -5px #000000;
+object-fit:cover;
 
 
 `

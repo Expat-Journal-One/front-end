@@ -17,8 +17,18 @@ height:auto;
 width: 45%;
 flex-wrap:wrap;
 flex-direction:row;
-
+:last-child:nth-child(even){
+  flex-grow: -1;
+  max-width: 94%;
+  
+}
+:last-child:nth-child(odd){
+  flex-grow: 1;
+  max-width: 94%;
+}
 `
+
+
 
 export default function Home() {
   
