@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import UserPost from './UserPost'
+import CreatePost from './CreatePost'
 export default function UserPage() {
 
   const [posts, setPosts] = useState([])
@@ -30,6 +31,8 @@ export default function UserPage() {
                 })
                 
               }
+              
+              <CreatePost/>
             </div> 
     );
 }  
