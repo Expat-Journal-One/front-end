@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
-import Post from './Post'
+import UserPost from './UserPost'
 export default function UserPage() {
 
   const [posts, setPosts] = useState([])
@@ -25,7 +25,7 @@ export default function UserPage() {
               {
                 posts.map(post => {
                   return(
-                    <Post info={post}/>
+                    <UserPost info={post}/>
                   )
                 })
                 
