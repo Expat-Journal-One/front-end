@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import Post from './Post'
 export default function UserPage() {
 
   const [posts, setPosts] = useState([])
-  axios.get('https://expatjournal-one.herokuapp.com/api/stories')
+  useEffect(()=> {
+    axios.get('https://expatjournal-one.herokuapp.com/api/stories')
     .then(res => {
+      console.log(res.data)
         setPosts(res.data)
     })
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
+  
+
+
 
 
         return (
@@ -19,6 +28,7 @@ export default function UserPage() {
                     <Post info={post}/>
                   )
                 })
+                
               }
             </div> 
     );
