@@ -15,10 +15,6 @@ export default function UserPage() {
     })
   }, [])
   
-
-
-
-
         return (
           <div>
             <h2>Welcome to UserPage</h2>
