@@ -17,9 +17,7 @@ function App() {
       <Link to="/">Home</Link> 
       <Link to="/Login">Login</Link>
       <Link to="/Signup">Signup</Link>
-      
-      {/* you can comment the logo out  */}
-         {/* <img src={logo} className="App-logo" alt="logo" />  */}
+     
         <Switch>
             <Route exact path="/">
               <Home/>
