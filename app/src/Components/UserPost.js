@@ -1,5 +1,4 @@
 import React from "react";
-
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
@@ -59,11 +58,29 @@ padding: 7%;
 line-height: 3rem;
 font-weight: 400;
 `
+const ButtonDiv = styled.div`
+display:flex;
+justify-content:space-evenly;
+text-align:center;
+
+`
+
+const StyledButton = styled.button`
+display:flex;
+justify-content:center;
+font-size: 1.4rem;
+background:#3f3f44;
+border: 2px double #f7f7f7;
+padding: 2%;
+width: 33%;
+color: #f7f7f7;
+
+` 
 
 
 
 
-export default function Post({info}){
+export default function UserPost({info}){
 
 
     return(
@@ -76,9 +93,16 @@ export default function Post({info}){
                     <StyledH3>{info.date}</StyledH3>
                     <StyledH4>{info.location}</StyledH4>
                     <StyledParagraph>{info.description}</StyledParagraph>
+                    <ButtonDiv>
+                        <StyledButton>Edit</StyledButton>
+                        <StyledButton>Delete</StyledButton>
+                </ButtonDiv>
                 </StyledTextDiv>
             </StyledDiv>
         </StyledContainer>
     )
 
 }
+        
+        
+        
