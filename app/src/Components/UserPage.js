@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from 'axios'
 import Post from './Post'
 export default function UserPage() {
@@ -12,6 +12,7 @@ export default function UserPage() {
 
         return (
           <div>
+            <h2>Welcome to UserPage</h2>
               {
                 posts.map(post => {
                   return(
