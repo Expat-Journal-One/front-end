@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
-// import Post from './Post'
+
 import { useHistory } from 'react-router-dom';
 
 const initialLoginValues = {
@@ -128,6 +128,7 @@ export default function Login(props){
           
             <form onSubmit={onLoginSubmit}>
               <div>
+              <h1>Login!</h1>
                 <label> Username:&nbsp;
                   <input
                   type='text'
@@ -147,8 +148,8 @@ export default function Login(props){
                 </label>
                 <div>{loginErrors.password}</div>
               </div>
-              <button>Login</button>
-              {/* disabled={disabled} */}
+              <button disabled={disabled}>Login</button>
+              {/*  */}
             </div>
              {/* <div>
               {
