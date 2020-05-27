@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
-import * as yup from 'yup'
-import loginSchema from '../Validation/loginSchema'
 // import Post from './Post'
 import { useHistory } from 'react-router-dom';
 
@@ -10,21 +8,16 @@ const initialPostValues = {
   title: '',
   location: '',
   description: '',
+  img: '',
 }
 
-// const initialLoginErrors = {
-//   username: '',
-//   password: '',
-// }
 
 
 
-export default function CreatePost(props){
+export default function CreatePost(){
 
   const [createBlogPost, setCreateBlogPost] = useState(initialPostValues)
  
-
-
 
 
   //////////////// HELPERS ////////////////
@@ -38,6 +31,8 @@ export default function CreatePost(props){
       .then(res => {
         console.log(newPost)
         setCreateBlogPost([res.data, ...createBlogPost])
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+        localStorage.setItem('user_id', JSON.stringify(res.data.id));
         
       })
       .catch(err => {
@@ -50,43 +45,27 @@ export default function CreatePost(props){
   }
 
 
-//   useEffect(()=> {
-//     loginSchema.isValid(loginValues)
-//     .then(valid => {
-//       setDisabled(!valid)
-//     })
-//   }, [loginValues])  
-  
 
 
 
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
- 
+
     const onContentChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
+    // const src = evt.target.src
 
-    // yup
-    //   .reach(loginSchema, name)
-    //   .validate(value)
-    //   .then(valid => {
-    //     setLoginErrors({
-    //       ...loginErrors,
-    //       [name]: ''
-    //     })
-    //   })
-    //   .catch(err => {
-    //     setLoginErrors({
-    //       ...loginErrors,
-    //       [name]: err.errors[0]
-    //     })
+
+    // setCreateBlogPost({
+    //     ...createBlogPost,
+    //     [name]: src
     //   })
 
     setCreateBlogPost({
       ...createBlogPost,
-      [name]: value
+      [name]: value,
     })
 
   }
@@ -98,8 +77,8 @@ export default function CreatePost(props){
       title: createBlogPost.title.trim(),
       location: createBlogPost.location.trim(),
       description:createBlogPost.description.trim(),
+      img:createBlogPost.img,
     }
-    // console.log(newUser)
     postBlog(newBlogPost)
   }
 
@@ -114,7 +93,6 @@ export default function CreatePost(props){
                   value={createBlogPost.title}
                   onChange={onContentChange} />
                 </label>
-                {/* <div>{loginErrors.username}</div> */}
 
               <div>
                 <label> Location:&nbsp;
@@ -124,7 +102,6 @@ export default function CreatePost(props){
                     value={createBlogPost.location}
                     onChange={onContentChange} />  
                 </label>
-                {/* <div>{loginErrors.password}</div> */}
               </div>
 
               <div>
@@ -135,7 +112,17 @@ export default function CreatePost(props){
                     value={createBlogPost.description}
                     onChange={onContentChange} />  
                 </label>
-                {/* <div>{loginErrors.password}</div> */}
+              </div>
+
+              <div>
+                <label> Image:&nbsp;
+                  <input
+                    type='text'
+                    name='img'
+                    value={createBlogPost.img} //most likely needs to be changed to src and not value
+
+                    onChange={onContentChange} />  
+                </label>
               </div>
               <button>Create Story</button>
               

@@ -23,6 +23,7 @@ export default function UserPage() {
         return (
           <div>
             <h2>Welcome to UserPage</h2>
+            <CreatePost/>
               {
                 posts.map(post => {
                   return(
@@ -32,7 +33,7 @@ export default function UserPage() {
                 
               }
               
-              <CreatePost/>
+              
             </div> 
     );
 }  

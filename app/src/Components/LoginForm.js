@@ -117,7 +117,7 @@ export default function Login(props){
                   value={loginValues.username}
                   onChange={onLoginChange} />
                 </label>
-                <div>{loginErrors.username}</div>
+                {/* <div>{loginErrors.username}</div> */}
 
               <div>
                 <label> Password:&nbsp;
@@ -127,7 +127,7 @@ export default function Login(props){
                     value={loginValues.password}
                     onChange={onLoginChange} />  
                 </label>
-                <div>{loginErrors.password}</div>
+                {/* <div>{loginErrors.password}</div> */}
               </div>
               <button disabled={disabled}>Login</button>
               
