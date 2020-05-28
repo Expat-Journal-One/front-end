@@ -28,7 +28,9 @@ function App() {
             <Route exact path="/Signup">
               <Signup/>
             </Route>
-            <PrivateRoute exact path='/userpage' component={UserPage} />
+          
+            <PrivateRoute exact path='/userPage' component={UserPage} />
+            
         </Switch>
       </header>
     </div>

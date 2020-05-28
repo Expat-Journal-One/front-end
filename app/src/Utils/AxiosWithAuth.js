@@ -4,8 +4,8 @@ export const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
   return axios.create({
     headers: {
-      Authorization: token,
+      Authorization:'Bearer ' + token,
     },
-    baseUrl: 'https://expatjournal-one.herokuapp.com/api/',
+    baseURL: 'https://expatjournal-one.herokuapp.com/api',
   });
 };
