@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import axios from 'axios';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
 import { useHistory } from 'react-router-dom';
-// import styled from "styled-components";
 
 
 const initialLoginValues = {
@@ -49,7 +47,8 @@ fontSize: '2rem',
 }
 const inputStyle = {
 height: '25px',
-marginBottom: '10%'
+marginBottom: '10%',
+width: '75%',
 }
 
 export default function Login(props){

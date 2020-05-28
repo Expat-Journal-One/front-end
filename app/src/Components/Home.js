@@ -32,9 +32,9 @@ flex-direction:row;
 `
 
 const StyledHomeDiv =styled.div`
-background-image:url(${homeImg});
+/* background-image:url(${homeImg});
 background-size:cover;
-object-fit:cover;
+object-fit:cover; */
 `
 
 
@@ -57,7 +57,7 @@ export default function Home() {
   
         return (
           <StyledHomeDiv>
-            <h1>Home Page!</h1>
+            <h1>Expat Journal</h1>
             <StyledBigDiv>
                     
             {
