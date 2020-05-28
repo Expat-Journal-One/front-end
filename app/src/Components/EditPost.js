@@ -9,9 +9,9 @@ const initialPostValues = {
   img: '',
 }
 
-export default function CreatePost(){
+export default function EditPost({info}){
 
-  const [createBlogPost, setCreateBlogPost] = useState(initialPostValues)
+  const [editBlogPost, setEditBlogPost] = useState(initialPostValues)
  
 
 
@@ -19,24 +19,23 @@ export default function CreatePost(){
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
   const history = useHistory();
-  const postBlog = newPost  => {
+  const editBlog = newEdit  => {
     
  
     axiosWithAuth()
-    .post(`/stories/`, newPost)
+    .put(`/stories/${info.id}`, newEdit)
       .then(res => {
-        console.log(createBlogPost)
-        setCreateBlogPost(res.data)
+        console.log(editBlogPost)
+        setEditBlogPost(res.data)
        
         history.push('/userpage');
         window.location.reload();
       })
       .catch(err => {
-        console.log(newPost)
         console.log(err)
       })
       .finally(() => {
-        setCreateBlogPost(initialPostValues)
+        setEditBlogPost(initialPostValues)
       })
   }
 
@@ -49,34 +48,36 @@ export default function CreatePost(){
     const value = evt.target.value
    
 
-    setCreateBlogPost({
-      ...createBlogPost,
+    setEditBlogPost({
+      ...editBlogPost,
       [name]: value,
     })
 
   }
 
-  const onCreateBlogPostSubmit = evt => {
+  const onEditBlogPostSubmit = evt => {
     evt.preventDefault()
 
-    const newBlogPost = {
-      title: createBlogPost.title.trim(),
-      location: createBlogPost.location.trim(),
-      description:createBlogPost.description.trim(),
-      image:createBlogPost.img,
+    const newEditBlogPost = {
+      title: editBlogPost.title.trim(),
+      location: editBlogPost.location.trim(),
+      description:editBlogPost.description.trim(),
+      image:editBlogPost.img,
     }
-    postBlog(newBlogPost)
+    editBlog(newEditBlogPost)
   }
 
         return (
           
-            <form onSubmit={onCreateBlogPostSubmit}>
+            <form onSubmit={onEditBlogPostSubmit}>
+                <h2>Edit Post Here</h2>
+                
               <div>
                 <label> Title:&nbsp;
                   <input
                   type='text'
                   name='title'
-                  value={createBlogPost.title}
+                  value={editBlogPost.title}
                   onChange={onContentChange} />
                 </label>
 
@@ -85,7 +86,7 @@ export default function CreatePost(){
                   <input
                     type='text'
                     name='location'
-                    value={createBlogPost.location}
+                    value={editBlogPost.location}
                     onChange={onContentChange} />  
                 </label>
               </div>
@@ -95,7 +96,7 @@ export default function CreatePost(){
                   <input
                     type='text'
                     name='description'
-                    value={createBlogPost.description}
+                    value={editBlogPost.description}
                     onChange={onContentChange} />  
                 </label>
               </div>
@@ -105,15 +106,16 @@ export default function CreatePost(){
                   <input
                     type='text'
                     name='img'
-                    value={createBlogPost.img} 
+                    value={editBlogPost.img} 
                     onChange={onContentChange} />  
                 </label>
               </div>
-              <button onClick={onContentChange}>Create Story</button>
+              <button onClick={onContentChange}>Re Create Story</button>
               
             </div>
              
           </form>
-                
+          
+            
     );
   }
