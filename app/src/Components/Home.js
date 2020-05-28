@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import Post from './Post'
 import styled from 'styled-components'
+import homeImg from './img/home.jpg'
 
 const StyledBigDiv = styled.div`
 display:flex;
@@ -24,9 +25,18 @@ flex-direction:row;
 }
 :last-child:nth-child(odd){
   flex-grow: 1;
-  max-width: 94%;
+  max-width: 93%;
+
+  
 }
 `
+
+const StyledHomeDiv =styled.div`
+background-image:url(${homeImg});
+background-size:cover;
+`
+
+
 
 
 
@@ -45,7 +55,7 @@ export default function Home() {
   }, [])
   
         return (
-          <div>
+          <StyledHomeDiv>
             <h1>Home Page!</h1>
             <StyledBigDiv>
                     
@@ -61,6 +71,6 @@ export default function Home() {
               }
              
                     </StyledBigDiv>
-            </div>
+            </StyledHomeDiv>
     );
 }

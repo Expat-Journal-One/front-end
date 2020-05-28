@@ -8,6 +8,7 @@ margin: 0;
 padding: 0;
 flex-wrap:wrap;
 flex-direction:row;
+width:100%;
 `
 
 const StyledContainer = styled.div`
@@ -15,7 +16,7 @@ display:flex;
 flex-wrap:wrap; 
 /* justify-content:space-evenly; */
 width: 100%;
-/* border: 1px solid blue; */
+flex-grow: 1;
 
 
 `
