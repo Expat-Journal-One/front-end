@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import UserPost from './UserPost'
-import CreatePost from './CreatePost'
-import { useHistory} from 'react-router-dom';
+import UserPost from './UserPost';
+import CreatePost from './CreatePost';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
+import EditPost from "./EditPost";
 
 export default function UserPage() {
-  const history = useHistory();
+  
   const [posts, setPosts] = useState([])
   useEffect(()=> {
     axiosWithAuth()
@@ -24,6 +24,7 @@ export default function UserPage() {
 
         <h2>Welcome to the UserPage</h2>
             <CreatePost/>
+            
               {
                 posts.map(post => {
                   return(
@@ -31,8 +32,6 @@ export default function UserPage() {
                   )
                 })  
               }
-              
-              
             </div> 
     );
             }

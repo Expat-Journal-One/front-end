@@ -5,7 +5,7 @@ import Login from "./Components/LoginForm";
 import Signup from "./Components/SignupForm";
 import Home from "./Components/Home";
 import UserPage from "./Components/UserPage";
-
+import EditPost from "./Components/EditPost";
 import './App.css';
 
 
@@ -28,9 +28,9 @@ function App() {
             <Route exact path="/Signup">
               <Signup/>
             </Route>
-          
-            <PrivateRoute exact path='/userPage' component={UserPage} />
-            
+  
+            <PrivateRoute exact path='/UserPage' component={UserPage} />
+            <PrivateRoute exact path='/EditPost' component={EditPost} />
         </Switch>
       </header>
     </div>
