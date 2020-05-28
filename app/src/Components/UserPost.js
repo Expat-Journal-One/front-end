@@ -1,12 +1,8 @@
-
 import React, { useState } from "react";
 import styled from 'styled-components'
 import CreatePost from './CreatePost'
 import { render } from "@testing-library/react";
-
-import React from "react";
-import styled from 'styled-components';
-import { useHistory, useParams} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
 
 
@@ -91,24 +87,20 @@ color: #f7f7f7;
 ` 
 
 export default function UserPost({info}){
-
-
     const history = useHistory();
-    const params = useParams();
-
     const deletePost = e => {
         e.preventDefault();
-  console.log(info)
+ 
         axiosWithAuth()
         .delete(`/stories/${info.id}`)
         .then((res) => {
           console.log(res);
           
           history.push('/userpage');
-        //   window.location.reload();
+         window.location.reload();
         })
         .catch((err) => console.log(err));
-    //   setTimeout(history.push('/userpage'), 10000);
+       setTimeout(history.push('/userpage'), 10000);
         };
 
 
@@ -123,13 +115,8 @@ export default function UserPost({info}){
                     <StyledH4>{info.location}</StyledH4>
                     <StyledParagraph>{info.description}</StyledParagraph>
                     <ButtonDiv>
-
-                        <StyledButton >Edit</StyledButton>
-                        <StyledButton>Delete</StyledButton>
-=======
                         <StyledButton>Edit</StyledButton>
                         <StyledButton onClick={deletePost}> Delete</StyledButton>
-
                 </ButtonDiv>
                 </StyledTextDiv>
             </StyledDiv>

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios';
-// import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
-// import Post from './Post'
-// import { useHistory } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
+import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
+
 
 const initialPostValues = {
   title: '',
@@ -10,9 +9,6 @@ const initialPostValues = {
   description: '',
   img: '',
 }
-
-
-
 
 export default function CreatePost(){
 
@@ -23,17 +19,20 @@ export default function CreatePost(){
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
-
+  const history = useHistory();
   const postBlog = newPost  => {
     
  
-    axios.post('https://expatjournal-one.herokuapp.com/api/stories', newPost)
+    axiosWithAuth()
+    .post(`/stories/`, newPost)
       .then(res => {
-        console.log(newPost)
-        setCreateBlogPost([res.data, ...createBlogPost])
+        console.log(createBlogPost)
+        setCreateBlogPost(res.data)
         localStorage.setItem('token', JSON.stringify(res.data.token));
         localStorage.setItem('user_id', JSON.stringify(res.data.id));
-        
+
+        history.push('/userpage');
+        window.location.reload();
       })
       .catch(err => {
         console.log(newPost)
@@ -44,10 +43,6 @@ export default function CreatePost(){
       })
   }
 
-
-
-
-
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
@@ -55,13 +50,7 @@ export default function CreatePost(){
     const onContentChange = evt => {
     const name = evt.target.name
     const value = evt.target.value
-    // const src = evt.target.src
-
-
-    // setCreateBlogPost({
-    //     ...createBlogPost,
-    //     [name]: src
-    //   })
+   
 
     setCreateBlogPost({
       ...createBlogPost,
@@ -77,7 +66,7 @@ export default function CreatePost(){
       title: createBlogPost.title.trim(),
       location: createBlogPost.location.trim(),
       description:createBlogPost.description.trim(),
-      img:createBlogPost.img,
+      image:createBlogPost.img,
     }
     postBlog(newBlogPost)
   }
@@ -119,11 +108,11 @@ export default function CreatePost(){
                   <input
                     type='text'
                     name='img'
-                    value={createBlogPost.img} //most likely needs to be changed to src and not value
+                    value={createBlogPost.img} 
                     onChange={onContentChange} />  
                 </label>
               </div>
-              <button>Create Story</button>
+              <button onClick={onContentChange}>Create Story</button>
               
             </div>
              
