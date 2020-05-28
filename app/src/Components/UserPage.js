@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-
-import axios from 'axios'
 import UserPost from './UserPost'
 import CreatePost from './CreatePost'
-export default function UserPage() {
-
-import UserPost from './UserPost';
 import { useHistory} from 'react-router-dom';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
 
@@ -27,11 +22,8 @@ export default function UserPage() {
         return (
           <div>
 
-            <h2>Welcome to UserPage</h2>
+        <h2>Welcome to the UserPage</h2>
             <CreatePost/>
-
-            <h2>Welcome to the UserPage</h2>
-
               {
                 posts.map(post => {
                   return(
@@ -44,4 +36,4 @@ export default function UserPage() {
             </div> 
     );
             }
-          
+        
