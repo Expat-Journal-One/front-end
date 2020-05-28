@@ -3,9 +3,12 @@ import React, { useState, useEffect } from "react";
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
-
 import { useHistory } from 'react-router-dom';
+<<<<<<< HEAD
 // import styled from "styled-components";
+=======
+
+>>>>>>> f42cac04feedee493f49b33d19cccf24131fd81e
 
 const initialLoginValues = {
   username: '',
@@ -70,10 +73,10 @@ export default function Login(props){
       .then(res => {
         console.log(res)
         setCredentials([res.data, ...credentials])
-        localStorage.setItem('token', JSON.stringify(res.data.token));
-        localStorage.setItem('user_id', JSON.stringify(res.data.id));
-         push('/userpage');
-         window.location.reload();
+        localStorage.setItem('token',res.data.token);
+        localStorage.setItem('user_id', JSON.stringify(res.data));
+          push('/userpage');
+          window.location.reload();
       })
       .catch(err => {
         console.log(err)
