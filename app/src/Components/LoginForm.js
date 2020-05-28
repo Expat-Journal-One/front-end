@@ -4,11 +4,8 @@ import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
 import { useHistory } from 'react-router-dom';
-<<<<<<< HEAD
 // import styled from "styled-components";
-=======
 
->>>>>>> f42cac04feedee493f49b33d19cccf24131fd81e
 
 const initialLoginValues = {
   username: '',

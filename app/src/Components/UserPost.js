@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from 'styled-components'
-import { useHistory, Link} from 'react-router-dom';
+import { useHistory, Link,} from 'react-router-dom';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
+import EditPost from "./EditPost";
 
 
 const StyledContainer = styled.div`
@@ -83,6 +84,10 @@ color: #f7f7f7;
 }
 
 ` 
+const hideForm = {
+    display: 'none',
+    visibility:'hidden',
+}
 
 export default function UserPost({info}){
     const history = useHistory();
@@ -100,6 +105,14 @@ export default function UserPost({info}){
         .catch((err) => console.log(err));
        setTimeout(history.push('/userpage'), 10000);
         };
+        
+
+    const [savedID, setSavedID]=useState()
+    const getID = e => {
+        // const id = e.target.id
+        setSavedID(info.id)
+
+    }    
 
 
     return(
@@ -108,22 +121,27 @@ export default function UserPost({info}){
             <StyledDiv>
                 <StyledImg src={info.image}></StyledImg>
                 <StyledTextDiv>
+                    <div>{info.id}</div>
                     <StyledH2>{info.title}</StyledH2>
                     <StyledH3>{info.date}</StyledH3>
                     <StyledH4>{info.location}</StyledH4>
                     <StyledParagraph>{info.description}</StyledParagraph>
                     <ButtonDiv>
-                         <StyledButton>
-                        <Link to="/EditPost">Edit</Link></StyledButton>
+                         <StyledButton onClick={getID}>
+                        <Link>Edit</Link>
+                        </StyledButton>
+
                         
                         <StyledButton onClick={deletePost}> Delete</StyledButton>
                 </ButtonDiv>
+                <EditPost style={hideForm} savedID={savedID} info={info}/>
+
                 </StyledTextDiv>
+                
             </StyledDiv>
         </StyledContainer>
     )
 
 }
-        
-        
+
         

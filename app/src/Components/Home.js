@@ -34,6 +34,7 @@ flex-direction:row;
 const StyledHomeDiv =styled.div`
 background-image:url(${homeImg});
 background-size:cover;
+object-fit:cover;
 `
 
 
