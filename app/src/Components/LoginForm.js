@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import loginSchema from '../Validation/loginSchema'
 
 import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
 
 const initialLoginValues = {
   username: '',
@@ -20,15 +21,43 @@ const initialCredentials = []
 
 const initialDisabled = true
 
+const formStyle = {
+  height: '500px',
+  backgroundColor: '#212529',
+  borderRadius: '50px',
+  padding: '2%',
+  display: 'flex',
+  boxShadow: '3px 3px 15px 5px rgba(0,0,0,0.66)'
+}
+
+const labelStyle = {
+  color: 'white',
+  marginTop: '2%'
+}
+
+const textDivStyle = {
+display: 'flex',
+flexDirection: 'column',
+margin: '3%'
+
+}
+const buttonStyle = {
+marginTop: '10%',
+width: '50%',
+alignSelf: 'center',
+fontSize: '2rem',
+}
+const inputStyle = {
+height: '25px',
+marginBottom: '10%'
+}
+
 export default function Login(props){
 
   const [credentials, setCredentials] = useState(initialCredentials)
   const [loginValues, setLoginValues] = useState(initialLoginValues)
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
-
-
-
 
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
@@ -107,29 +136,33 @@ export default function Login(props){
 
         return (
           
-            <form onSubmit={onLoginSubmit}>
-              <div>
-              <h1>Login!</h1>
-                <label> Username:&nbsp;
+            <form style={formStyle}  onSubmit={onLoginSubmit}>
+              <div style={textDivStyle}>
+              <h1 style={labelStyle}>Login!</h1>
+                <label style={labelStyle}> Username:&nbsp;
                   <input
+                  style={inputStyle}
                   type='text'
                   name='username'
+                  placeholder='Enter a username'
                   value={loginValues.username}
                   onChange={onLoginChange} />
                 </label>
-                <div>{loginErrors.username}</div>
+                {/* <div>{loginErrors.username}</div> */}
 
               <div>
-                <label> Password:&nbsp;
+                <label style={labelStyle}> Password:&nbsp;
                   <input
+                    style={inputStyle}
                     type='password'
                     name='password'
+                    placeholder='Enter a password'
                     value={loginValues.password}
                     onChange={onLoginChange} />  
                 </label>
-                <div>{loginErrors.password}</div>
+                {/* <div>{loginErrors.password}</div> */}
               </div>
-              <button disabled={disabled}>Login</button>
+              <button style={buttonStyle} disabled={disabled}>Login</button>
               
             </div>
              

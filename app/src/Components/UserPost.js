@@ -1,7 +1,14 @@
+
+import React, { useState } from "react";
+import styled from 'styled-components'
+import CreatePost from './CreatePost'
+import { render } from "@testing-library/react";
+
 import React from "react";
 import styled from 'styled-components';
 import { useHistory, useParams} from 'react-router-dom';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
+
 
 const StyledContainer = styled.div`
 display:flex;
@@ -76,10 +83,16 @@ border: 2px double #f7f7f7;
 padding: 2%;
 width: 33%;
 color: #f7f7f7;
+:hover{
+    border: 2px double #1b6ca8;
+    transition: padding 2s;
+}
 
 ` 
 
 export default function UserPost({info}){
+
+
     const history = useHistory();
     const params = useParams();
 
@@ -98,6 +111,7 @@ export default function UserPost({info}){
     //   setTimeout(history.push('/userpage'), 10000);
         };
 
+
     return(
 
         <StyledContainer>
@@ -109,8 +123,13 @@ export default function UserPost({info}){
                     <StyledH4>{info.location}</StyledH4>
                     <StyledParagraph>{info.description}</StyledParagraph>
                     <ButtonDiv>
+
+                        <StyledButton >Edit</StyledButton>
+                        <StyledButton>Delete</StyledButton>
+=======
                         <StyledButton>Edit</StyledButton>
                         <StyledButton onClick={deletePost}> Delete</StyledButton>
+
                 </ButtonDiv>
                 </StyledTextDiv>
             </StyledDiv>
