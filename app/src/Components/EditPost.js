@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,  } from "react";
 import { useHistory} from 'react-router-dom';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
+
+const lableStyle = {
+fontSize: '1.2rem'
+}
 
 const initialPostValues = {
   title: '',
@@ -16,9 +20,12 @@ export default function EditPost({info, savedID }){
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
-  const history = useHistory();
-  const editBlog = newEdit  => {
   
+  const history = useHistory();
+ 
+    
+
+  const editBlog = newEdit  => {
     axiosWithAuth()
     .put(`/stories/${savedID}`, newEdit)
       .then(res => {
@@ -34,8 +41,9 @@ export default function EditPost({info, savedID }){
       .finally(() => {
         setEditBlogPost(initialPostValues)
       })
-  }
-
+      
+}
+  
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
   //////////////// EVENT HANDLERS ////////////////
@@ -54,7 +62,7 @@ export default function EditPost({info, savedID }){
 
 
 
-  const onEditBlogPostSubmit = evt => {
+  const onEditBlogPostSubmit = (evt) => {
     evt.preventDefault()
 
     const newEditBlogPost = {
@@ -69,10 +77,10 @@ export default function EditPost({info, savedID }){
         return (
           
             <form onSubmit={onEditBlogPostSubmit}>
-                <h2>Edit Post Here</h2>
+                <h4 style={lableStyle}>Edit Post Here</h4>
                 
               <div>
-                <label> Title:&nbsp;
+                <label style={lableStyle}> Title:&nbsp;
                   <input
                   type='text'
                   name='title'
@@ -81,7 +89,7 @@ export default function EditPost({info, savedID }){
                 </label>
 
               <div>
-                <label> Location:&nbsp;
+                <label style={lableStyle}> Location:&nbsp;
                   <input
                     type='text'
                     name='location'
@@ -91,7 +99,7 @@ export default function EditPost({info, savedID }){
               </div>
 
               <div>
-                <label> Description:&nbsp;
+                <label style={lableStyle}> Description:&nbsp;
                   <input
                     type='text'
                     name='description'
@@ -101,7 +109,7 @@ export default function EditPost({info, savedID }){
               </div>
 
               <div>
-                <label> Image:&nbsp;
+                <label style={lableStyle}> Image:&nbsp;
                   <input
                     type='text'
                     name='img'

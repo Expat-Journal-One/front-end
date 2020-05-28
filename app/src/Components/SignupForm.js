@@ -3,8 +3,41 @@ import { axiosWithAuth } from '../Utils/AxiosWithAuth';
 import * as yup from 'yup'
 import formSchema from '../Validation/formSchema'
 import { useHistory } from 'react-router-dom';
+import regBG from './img/regBG.jpg'
 
 
+
+
+const formStyle = {
+  height: '625px',
+  backgroundColor: '#212529',
+  borderRadius: '50px',
+  padding: '2%',
+  display: 'flex',
+  boxShadow: '3px 3px 15px 5px rgba(0,0,0,0.66)'
+}
+
+const labelStyle = {
+  color: 'white',
+  marginTop: '1%'
+}
+
+const textDivStyle = {
+display: 'flex',
+flexDirection: 'column',
+margin: '1%'
+
+}
+const buttonStyle = {
+marginTop: '10%',
+width: '50%',
+alignSelf: 'center',
+fontSize: '2rem',
+}
+const inputStyle = {
+height: '25px',
+width:'75%'
+}
 const initialSignupValues = {
   name: '',
   username: '',
@@ -101,11 +134,12 @@ export default function Signup(){
   }
         return (
           
-            <form onSubmit={onSignupSubmit}>
-              <div>
-              <h1>Signup!</h1>
-              <label> Name:&nbsp;
+            <form style={formStyle} onSubmit={onSignupSubmit}>
+              <div style={textDivStyle}>
+              <h1 style={labelStyle}>Signup!</h1>
+              <label style={labelStyle}> Name:&nbsp;
                   <input
+                  style={inputStyle}
                   type='text'
                   name='name'
                   value={signupValues.name}
@@ -113,8 +147,9 @@ export default function Signup(){
                 </label>
                 <div>{signupErrors.name}</div>
 
-                <label> Username:&nbsp;
+                <label style={labelStyle}> Username:&nbsp;
                   <input
+                  style={inputStyle}
                   type='text'
                   name='username'
                   value={signupValues.username}
@@ -122,8 +157,9 @@ export default function Signup(){
                 </label>
                 <div>{signupErrors.username}</div>
 
-                <label> Email:&nbsp;
+                <label style={labelStyle}> Email:&nbsp;
                   <input
+                  style={inputStyle}
                   type='email'
                   name='email'
                   value={signupValues.email}
@@ -132,15 +168,16 @@ export default function Signup(){
                 <div>{signupErrors.email}</div>
 
               
-                <label> Password:&nbsp;
+                <label style={labelStyle}> Password:&nbsp;
                   <input
+                  style={inputStyle}
                     type='password'
                     name='password'
                     value={signupValues.password}
                     onChange={onSignupChange} />  
                 </label>
                 <div>{signupErrors.password}</div>
-              <button disabled={disabled}>Sign up</button>
+              <button style={buttonStyle} disabled={disabled}>Sign up</button>
             </div>
           </form>
     );
