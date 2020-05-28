@@ -28,9 +28,7 @@ export default function CreatePost(){
       .then(res => {
         console.log(createBlogPost)
         setCreateBlogPost(res.data)
-        localStorage.setItem('token', JSON.stringify(res.data.token));
-        localStorage.setItem('user_id', JSON.stringify(res.data.id));
-
+       
         history.push('/userpage');
         window.location.reload();
       })
