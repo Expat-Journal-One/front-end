@@ -7,6 +7,7 @@ margin: 0;
 padding: 0;
 flex-wrap:wrap;
 flex-direction:row;
+width:100%;
 `
 
 const StyledContainer = styled.div`
@@ -14,6 +15,9 @@ display:flex;
 flex-wrap:wrap; 
 /* justify-content:space-evenly; */
 width: 100%;
+flex-grow: 1;
+
+
 /* border: 1px solid blue; */
 `
 
@@ -77,6 +81,7 @@ export default function Post({info}){
             <StyledDiv>
                 <StyledImg src={info.image}></StyledImg>
                 <StyledTextDiv>
+                    <div>{info.id}</div>
                     <StyledH2>{info.title}</StyledH2>
                     <StyledH3>{info.date}</StyledH3>
                     <StyledH4>{info.location}</StyledH4>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory} from 'react-router-dom';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 
@@ -9,21 +9,18 @@ const initialPostValues = {
   img: '',
 }
 
-export default function EditPost({info}){
 
+export default function EditPost({info, savedID }){
   const [editBlogPost, setEditBlogPost] = useState(initialPostValues)
  
-
-
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
   const history = useHistory();
   const editBlog = newEdit  => {
-    
- 
+  
     axiosWithAuth()
-    .put(`/stories/${info.id}`, newEdit)
+    .put(`/stories/${savedID}`, newEdit)
       .then(res => {
         console.log(editBlogPost)
         setEditBlogPost(res.data)
@@ -54,6 +51,8 @@ export default function EditPost({info}){
     })
 
   }
+
+
 
   const onEditBlogPostSubmit = evt => {
     evt.preventDefault()
