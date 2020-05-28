@@ -41,10 +41,10 @@ export default function Login(props){
       .then(res => {
         console.log(res)
         setCredentials([res.data, ...credentials])
-        localStorage.setItem('token', JSON.stringify(res.data.token));
-        localStorage.setItem('user_id', JSON.stringify(res.data.id));
-         push('/userpage');
-         window.location.reload();
+        localStorage.setItem('token',res.data.token);
+        localStorage.setItem('user_id', JSON.stringify(res.data));
+          push('/userpage');
+          window.location.reload();
       })
       .catch(err => {
         console.log(err)
