@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from 'styled-components'
-import CreatePost from './CreatePost'
-import { render } from "@testing-library/react";
-import { useHistory} from 'react-router-dom';
+import { useHistory, Link} from 'react-router-dom';
 import { axiosWithAuth } from "../Utils/AxiosWithAuth";
 
 
@@ -115,7 +113,9 @@ export default function UserPost({info}){
                     <StyledH4>{info.location}</StyledH4>
                     <StyledParagraph>{info.description}</StyledParagraph>
                     <ButtonDiv>
-                        <StyledButton>Edit</StyledButton>
+                         <StyledButton>
+                        <Link to="/EditPost">Edit</Link></StyledButton>
+                        
                         <StyledButton onClick={deletePost}> Delete</StyledButton>
                 </ButtonDiv>
                 </StyledTextDiv>
