@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import Post from './Post'
 import styled from 'styled-components'
-import homeImg from './img/home.jpg'
 
 const StyledBigDiv = styled.div`
 display:flex;
@@ -10,7 +9,7 @@ justify-content:space-evenly;
 width: 100%;
 height: 100%;
 flex-wrap:wrap;
-
+flex-direction:row;
 `
 const StyledDiv = styled.div`
 display:flex;
@@ -21,24 +20,14 @@ flex-direction:row;
 :last-child:nth-child(even){
   flex-grow: -1;
   max-width: 94%;
-  
 }
 :last-child:nth-child(odd){
   flex-grow: 1;
   max-width: 93%;
-
-  
 }
 `
-
-const StyledHomeDiv =styled.div`
-/* background-image:url(${homeImg});
-background-size:cover;
-object-fit:cover; */
+const StyledHomeDiv = styled.div`
 `
-
-
-
 
 
 export default function Home() {
@@ -57,20 +46,17 @@ export default function Home() {
   
         return (
           <StyledHomeDiv>
-            <h1>Expat Journal</h1>
+            <h1 style={{textShadow: '3px 3px 2px rgba(100, 100, 100, 1)'}}>Expat Journal</h1>
             <StyledBigDiv>
-                    
             {
-                posts.map(post => {
+                posts.slice(0).reverse().map(post => {
                   return(
                     <StyledDiv>
                     <Post info={post}/>
                     </StyledDiv>
                   )
-                })
-                
+                }) 
               }
-             
                     </StyledBigDiv>
             </StyledHomeDiv>
     );

@@ -9,7 +9,7 @@ import regBG from './img/regBG.jpg'
 
 
 const formStyle = {
-  height: '625px',
+  height: 'auto',
   backgroundColor: '#212529',
   borderRadius: '50px',
   padding: '2%',
@@ -19,7 +19,13 @@ const formStyle = {
 
 const labelStyle = {
   color: 'white',
-  marginTop: '1%'
+  marginTop: '1%',
+  fontSize:'1.8rem'
+}
+const headerStyle = {
+  color: 'white',
+  marginTop: '1%',
+  fontSize:'3rem'
 }
 
 const textDivStyle = {
@@ -32,11 +38,15 @@ const buttonStyle = {
 marginTop: '10%',
 width: '50%',
 alignSelf: 'center',
-fontSize: '2rem',
+fontSize: '1.6rem',
 }
 const inputStyle = {
 height: '25px',
 width:'75%'
+}
+const errorStyle = {
+  fontSize:'1rem',
+  color:'red'
 }
 const initialSignupValues = {
   name: '',
@@ -136,7 +146,7 @@ export default function Signup(){
           
             <form style={formStyle} onSubmit={onSignupSubmit}>
               <div style={textDivStyle}>
-              <h1 style={labelStyle}>Signup!</h1>
+              <h1 style={headerStyle}>Sign up</h1>
               <label style={labelStyle}> Name:&nbsp;
                   <input
                   style={inputStyle}
@@ -145,7 +155,7 @@ export default function Signup(){
                   value={signupValues.name}
                   onChange={onSignupChange} />
                 </label>
-                <div>{signupErrors.name}</div>
+                <p style={errorStyle}>{signupErrors.name}</p>
 
                 <label style={labelStyle}> Username:&nbsp;
                   <input
@@ -155,7 +165,7 @@ export default function Signup(){
                   value={signupValues.username}
                   onChange={onSignupChange} />
                 </label>
-                <div>{signupErrors.username}</div>
+                <p style={errorStyle}>{signupErrors.username}</p>
 
                 <label style={labelStyle}> Email:&nbsp;
                   <input
@@ -165,7 +175,7 @@ export default function Signup(){
                   value={signupValues.email}
                   onChange={onSignupChange} />
                 </label>
-                <div>{signupErrors.email}</div>
+                <p style={errorStyle}>{signupErrors.email}</p>
 
               
                 <label style={labelStyle}> Password:&nbsp;
@@ -176,7 +186,7 @@ export default function Signup(){
                     value={signupValues.password}
                     onChange={onSignupChange} />  
                 </label>
-                <div>{signupErrors.password}</div>
+                <p style={errorStyle}>{signupErrors.password}</p>
               <button style={buttonStyle} disabled={disabled}>Sign up</button>
             </div>
           </form>

@@ -21,25 +21,29 @@ const labelStyle = {
   display:'flex',
   flexDirection:'row',
   color: 'white',
-  marginTop: '1%',
-  
+  marginBottom: '1.5%',
+  justifyContent:'center',
+  alignSelf:'center',
+  alignItems:'center'
+
 }
 
 const textDivStyle = {
-display: 'flex',
-margin: '1%'
+  display: 'flex',
+  margin: '1%'
 
 }
 const buttonStyle = {
-marginTop: '1%',
-width: '25%',
-alignSelf: 'center',
-fontSize: '1.6rem',
+  marginTop: '1%',
+  width: '25%',
+  alignSelf: 'center',
+  fontSize: '1.6rem',
 }
 const inputStyle = {
-display:'flex',
-height: '25px',
-width:'100%',
+  display:'flex',
+  height: '25px',
+  width:'100%',
+  alignSelf:'center'
 
 }
 const h3Style = {
@@ -48,14 +52,6 @@ const h3Style = {
   color: 'white',
   marginBottom:'5%'
 }
-
-
-
-
-
-
-
-
 
 
 const initialPostValues = {
@@ -69,8 +65,6 @@ export default function CreatePost(){
 
   const [createBlogPost, setCreateBlogPost] = useState(initialPostValues)
  
-
-
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
@@ -81,14 +75,12 @@ export default function CreatePost(){
     axiosWithAuth()
     .post(`/stories/`, newPost)
       .then(res => {
-        console.log(createBlogPost)
         setCreateBlogPost(newPost)
        
         history.push('/userpage');
         window.location.reload();
       })
       .catch(err => {
-        console.log(newPost)
         console.log(err)
       })
       .finally(() => {
@@ -106,7 +98,6 @@ export default function CreatePost(){
    
 
     setCreateBlogPost({
-      
       ...createBlogPost,
       [name]: value,
     })
@@ -126,18 +117,17 @@ export default function CreatePost(){
   }
 
         return (
-          
-          
             <form style={formStyle} onSubmit={onCreateBlogPostSubmit}>
               <h3 style={h3Style}> Create a new Story</h3>
+
               <div style={textDivStyle}>
                 <label style={labelStyle}> Title:&nbsp;
                   <input
-                  style={inputStyle}
-                  type='text'
-                  name='title'
-                  value={createBlogPost.title}
-                  onChange={onContentChange} />
+                    style={inputStyle}
+                    type='text'
+                    name='title'
+                    value={createBlogPost.title}
+                    onChange={onContentChange} />
                 </label>
                 </div>
 
@@ -174,8 +164,6 @@ export default function CreatePost(){
                 </label>
               </div>
               <button style={buttonStyle} onClick={onContentChange}>Create Story</button>
-              
-             
           </form>
                 
     );

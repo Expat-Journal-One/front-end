@@ -3,10 +3,7 @@ import { useHistory} from 'react-router-dom';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 
 const labelStyle = {
-// display:'flex',
 fontSize: '1.4rem',
-// textAlign: 'justify',
-// alignSelf: 'flex-start'
 }
 
 const buttonStyle = {
@@ -19,39 +16,37 @@ border: '2px double #f7f7f7',
 width: '50%',
 color: '#f7f7f7',
 margin: '8% auto'
-
-
 }
+
 const inputStyle = {
 width: '50%',
 }
 
-const initialPostValues = {
-  title: '',
-  location: '',
-  description: '',
-  img: '',
-}
-
 
 export default function EditPost({info, savedID }){
+  
+  const initialPostValues = {
+    title: info.title,
+    location: info.location,
+    description: info.description,
+    img: info.image,
+  }
+
   const [editBlogPost, setEditBlogPost] = useState(initialPostValues)
- console.log(info)
-  //////////////// HELPERS ////////////////
+ 
+ //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
   
   const history = useHistory();
- 
-    
 
   const editBlog = newEdit  => {
+    
     axiosWithAuth()
     .put(`/stories/${savedID}`, newEdit)
       .then(res => {
-        console.log(editBlogPost)
         setEditBlogPost(res.data )
-       
+        
         history.push('/userpage');
         window.location.reload();
       })
@@ -61,7 +56,6 @@ export default function EditPost({info, savedID }){
       .finally(() => {
         setEditBlogPost(initialPostValues)
       })
-      
 }
   
   //////////////// EVENT HANDLERS ////////////////
@@ -81,8 +75,7 @@ export default function EditPost({info, savedID }){
   }
 
 
-
-  const onEditBlogPostSubmit = (evt) => {
+    const onEditBlogPostSubmit = (evt) => {
     evt.preventDefault()
 
     const newEditBlogPost = {
@@ -93,12 +86,9 @@ export default function EditPost({info, savedID }){
     }
     editBlog(newEditBlogPost)
   }
-
         return (
-          
             <form onSubmit={onEditBlogPostSubmit}>
                 <h4 style={{fontSize: '1.4rem'}}>Edit Post Here</h4>
-                
               <div>
                 <label style={labelStyle}> Title:&nbsp;
                   <input
@@ -108,7 +98,6 @@ export default function EditPost({info, savedID }){
                   value={editBlogPost.title}
                   onChange={onContentChange} />
                 </label>
-
               <div>
                 <label style={labelStyle}> Location:&nbsp;
                   <input
@@ -119,7 +108,6 @@ export default function EditPost({info, savedID }){
                     onChange={onContentChange} />  
                 </label>
               </div>
-
               <div>
                 <label style={labelStyle}> Description:&nbsp;
                   <input
@@ -130,7 +118,6 @@ export default function EditPost({info, savedID }){
                     onChange={onContentChange} />  
                 </label>
               </div>
-
               <div>
                 <label style={labelStyle}> Image:&nbsp;
                   <input
@@ -142,11 +129,7 @@ export default function EditPost({info, savedID }){
                 </label>
               </div>
               <button style={buttonStyle} onClick={onContentChange}>Re Create Story</button>
-              
             </div>
-             
-          </form>
-          
-            
+          </form>  
     );
   }
