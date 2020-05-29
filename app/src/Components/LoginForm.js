@@ -30,7 +30,13 @@ const formStyle = {
 
 const labelStyle = {
   color: 'white',
-  marginTop: '2%'
+  marginTop: '2%',
+  fontSize:'1.8rem'
+}
+const headerStyle = {
+  color: 'white',
+  marginTop: '1%',
+  fontSize:'3rem'
 }
 
 const textDivStyle = {
@@ -43,7 +49,7 @@ const buttonStyle = {
 marginTop: '10%',
 width: '50%',
 alignSelf: 'center',
-fontSize: '2rem',
+fontSize: '1.6rem',
 }
 const inputStyle = {
 height: '25px',
@@ -51,7 +57,7 @@ marginBottom: '10%',
 width: '75%',
 }
 
-export default function Login(props){
+export default function Login(){
 
   const [credentials, setCredentials] = useState(initialCredentials)
   const [loginValues, setLoginValues] = useState(initialLoginValues)
@@ -137,7 +143,7 @@ export default function Login(props){
           
             <form style={formStyle}  onSubmit={onLoginSubmit}>
               <div style={textDivStyle}>
-              <h1 style={labelStyle}>Login!</h1>
+              <h1 style={headerStyle}>Login</h1>
                 <label style={labelStyle}> Username:&nbsp;
                   <input
                   style={inputStyle}
@@ -147,7 +153,6 @@ export default function Login(props){
                   value={loginValues.username}
                   onChange={onLoginChange} />
                 </label>
-                {/* <div>{loginErrors.username}</div> */}
 
               <div>
                 <label style={labelStyle}> Password:&nbsp;
@@ -159,7 +164,6 @@ export default function Login(props){
                     value={loginValues.password}
                     onChange={onLoginChange} />  
                 </label>
-                {/* <div>{loginErrors.password}</div> */}
               </div>
               <button style={buttonStyle} disabled={disabled}>Login</button>
               

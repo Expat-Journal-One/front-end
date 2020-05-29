@@ -8,9 +8,7 @@ import styled from 'styled-components'
 const StyledContainer = styled.div`
 display:flex;
 flex-direction:column;
-/* background:#3f3f44; */
 `
-
 
 const StyledBigDiv = styled.div`
 display:flex;
@@ -18,9 +16,7 @@ justify-content:space-evenly;
 width: 100%;
 height: 100%;
 flex-wrap:wrap;
-flex-direction:row-reverse;
-
-
+flex-direction:row;
 `
 const StyledDiv = styled.div`
 display:flex;
@@ -32,13 +28,10 @@ flex-direction:row;
 :last-child:nth-child(even){
   flex-grow: -1;
   max-width: 94%;
-  
 }
 :last-child:nth-child(odd){
   flex-grow: 1;
   max-width: 93%;
-
-  
 }
 `
 
@@ -60,24 +53,20 @@ export default function UserPage() {
 
         return (
           <StyledContainer>
-
-        <h2>Welcome to the UserPage</h2>
+        <h2 style={{textShadow: '3px 3px 2px rgba(100, 100, 100, 1)'}}>Welcome to the UserPage</h2>
             <CreatePost/>
             <StyledBigDiv>
               {
-                
-                
                 posts.slice(0).reverse().map(post => {
                   return(
                     <StyledDiv>
                     <UserPost info={post} key={post.id}/>
                     </StyledDiv>
                   )
-
                 })  
               }
               </StyledBigDiv>
             </StyledContainer> 
     );
-            }
+  }
         

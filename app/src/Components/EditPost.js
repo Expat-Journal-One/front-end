@@ -2,36 +2,51 @@ import React, { useState,  } from "react";
 import { useHistory} from 'react-router-dom';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 
-const lableStyle = {
-fontSize: '1.2rem'
+const labelStyle = {
+fontSize: '1.4rem',
 }
 
-const initialPostValues = {
-  title: '',
-  location: '',
-  description: '',
-  img: '',
+const buttonStyle = {
+display:'flex',
+justifyContent:'center',
+alignSelf:'center',
+fontSize: '1.2rem',
+background:'#3f3f44',
+border: '2px double #f7f7f7',
+width: '50%',
+color: '#f7f7f7',
+margin: '8% auto'
+}
+
+const inputStyle = {
+width: '50%',
 }
 
 
 export default function EditPost({info, savedID }){
+  
+  const initialPostValues = {
+    title: info.title,
+    location: info.location,
+    description: info.description,
+    img: info.image,
+  }
+
   const [editBlogPost, setEditBlogPost] = useState(initialPostValues)
  
-  //////////////// HELPERS ////////////////
+ //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
   
   const history = useHistory();
- 
-    
 
   const editBlog = newEdit  => {
+    
     axiosWithAuth()
     .put(`/stories/${savedID}`, newEdit)
       .then(res => {
-        console.log(editBlogPost)
-        setEditBlogPost(res.data)
-       
+        setEditBlogPost(res.data )
+        
         history.push('/userpage');
         window.location.reload();
       })
@@ -41,7 +56,6 @@ export default function EditPost({info, savedID }){
       .finally(() => {
         setEditBlogPost(initialPostValues)
       })
-      
 }
   
   //////////////// EVENT HANDLERS ////////////////
@@ -61,8 +75,7 @@ export default function EditPost({info, savedID }){
   }
 
 
-
-  const onEditBlogPostSubmit = (evt) => {
+    const onEditBlogPostSubmit = (evt) => {
     evt.preventDefault()
 
     const newEditBlogPost = {
@@ -73,56 +86,50 @@ export default function EditPost({info, savedID }){
     }
     editBlog(newEditBlogPost)
   }
-
         return (
-          
             <form onSubmit={onEditBlogPostSubmit}>
-                <h4 style={lableStyle}>Edit Post Here</h4>
-                
+                <h4 style={{fontSize: '1.4rem'}}>Edit Post Here</h4>
               <div>
-                <label style={lableStyle}> Title:&nbsp;
+                <label style={labelStyle}> Title:&nbsp;
                   <input
+                  style={inputStyle}
                   type='text'
                   name='title'
                   value={editBlogPost.title}
                   onChange={onContentChange} />
                 </label>
-
               <div>
-                <label style={lableStyle}> Location:&nbsp;
+                <label style={labelStyle}> Location:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='location'
                     value={editBlogPost.location}
                     onChange={onContentChange} />  
                 </label>
               </div>
-
               <div>
-                <label style={lableStyle}> Description:&nbsp;
+                <label style={labelStyle}> Description:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='description'
                     value={editBlogPost.description}
                     onChange={onContentChange} />  
                 </label>
               </div>
-
               <div>
-                <label style={lableStyle}> Image:&nbsp;
+                <label style={labelStyle}> Image:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='img'
                     value={editBlogPost.img} 
                     onChange={onContentChange} />  
                 </label>
               </div>
-              <button onClick={onContentChange}>Re Create Story</button>
-              
+              <button style={buttonStyle} onClick={onContentChange}>Re Create Story</button>
             </div>
-             
-          </form>
-          
-            
+          </form>  
     );
   }
