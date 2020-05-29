@@ -28,7 +28,7 @@ flex-direction:row;
 `
 const StyledHomeDiv = styled.div`
 `
-
+//testing merge
 
 export default function Home() {
   
