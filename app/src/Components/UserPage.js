@@ -42,6 +42,7 @@ flex-direction:row;
 }
 `
 
+
 export default function UserPage() {
   
   const [posts, setPosts] = useState([])

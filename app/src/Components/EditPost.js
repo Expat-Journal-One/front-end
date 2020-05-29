@@ -2,8 +2,28 @@ import React, { useState,  } from "react";
 import { useHistory} from 'react-router-dom';
 import  {axiosWithAuth}  from "../Utils/AxiosWithAuth";
 
-const lableStyle = {
-fontSize: '1.2rem'
+const labelStyle = {
+// display:'flex',
+fontSize: '1.4rem',
+// textAlign: 'justify',
+// alignSelf: 'flex-start'
+}
+
+const buttonStyle = {
+display:'flex',
+justifyContent:'center',
+alignSelf:'center',
+fontSize: '1.2rem',
+background:'#3f3f44',
+border: '2px double #f7f7f7',
+width: '50%',
+color: '#f7f7f7',
+margin: '8% auto'
+
+
+}
+const inputStyle = {
+width: '50%',
 }
 
 const initialPostValues = {
@@ -16,7 +36,7 @@ const initialPostValues = {
 
 export default function EditPost({info, savedID }){
   const [editBlogPost, setEditBlogPost] = useState(initialPostValues)
- 
+ console.log(info)
   //////////////// HELPERS ////////////////
   //////////////// HELPERS ////////////////
   //////////////// HELPERS //////////////// 
@@ -30,7 +50,7 @@ export default function EditPost({info, savedID }){
     .put(`/stories/${savedID}`, newEdit)
       .then(res => {
         console.log(editBlogPost)
-        setEditBlogPost(res.data)
+        setEditBlogPost(res.data )
        
         history.push('/userpage');
         window.location.reload();
@@ -77,11 +97,12 @@ export default function EditPost({info, savedID }){
         return (
           
             <form onSubmit={onEditBlogPostSubmit}>
-                <h4 style={lableStyle}>Edit Post Here</h4>
+                <h4 style={{fontSize: '1.4rem'}}>Edit Post Here</h4>
                 
               <div>
-                <label style={lableStyle}> Title:&nbsp;
+                <label style={labelStyle}> Title:&nbsp;
                   <input
+                  style={inputStyle}
                   type='text'
                   name='title'
                   value={editBlogPost.title}
@@ -89,8 +110,9 @@ export default function EditPost({info, savedID }){
                 </label>
 
               <div>
-                <label style={lableStyle}> Location:&nbsp;
+                <label style={labelStyle}> Location:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='location'
                     value={editBlogPost.location}
@@ -99,8 +121,9 @@ export default function EditPost({info, savedID }){
               </div>
 
               <div>
-                <label style={lableStyle}> Description:&nbsp;
+                <label style={labelStyle}> Description:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='description'
                     value={editBlogPost.description}
@@ -109,15 +132,16 @@ export default function EditPost({info, savedID }){
               </div>
 
               <div>
-                <label style={lableStyle}> Image:&nbsp;
+                <label style={labelStyle}> Image:&nbsp;
                   <input
+                  style={inputStyle}
                     type='text'
                     name='img'
                     value={editBlogPost.img} 
                     onChange={onContentChange} />  
                 </label>
               </div>
-              <button onClick={onContentChange}>Re Create Story</button>
+              <button style={buttonStyle} onClick={onContentChange}>Re Create Story</button>
               
             </div>
              

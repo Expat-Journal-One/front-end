@@ -57,7 +57,7 @@ box-shadow: 12px 4px 15px -5px #000000;
 object-fit:cover;
 `
 const StyledH2 = styled.h2`
-margin: 0;
+margin-top: 4%;
 padding: 0;
 font-size: 1.7rem;
 `
