@@ -17,6 +17,7 @@ function App() {
       <Link to="/">Home</Link> 
       <Link to="/Login">Login</Link>
       <Link to="/Signup">Signup</Link>
+      <Link to="/UserPage">UserPage</Link>
       </div>
       <header className="App-header">
       
