@@ -13,11 +13,13 @@ function App() {
   return (
     <Router>
     <div className="App">
-      <header className="App-header">
+    <div className="App-links">
       <Link to="/">Home</Link> 
       <Link to="/Login">Login</Link>
       <Link to="/Signup">Signup</Link>
-     
+      </div>
+      <header className="App-header">
+      
         <Switch>
             <Route exact path="/">
               <Home/>

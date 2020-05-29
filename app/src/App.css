@@ -2,20 +2,10 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   /* background-color: #282c34; */
-  background-color: whitesmoke;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,15 +16,22 @@
   background-image: url('./Components/img/regBG.jpg');
 }
 
-.App-link {
-  color: #61dafb;
+.App-links {
+  display: flex;
+  color: white;
+  justify-content:space-evenly;
+  font-size: 2rem;
+  background-color: rgba(33, 37, 41, 0.75);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  /* font-family: 'Architects Daughter',cursive; */
+  font-weight: bold;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+a:link {
+  color: white;
+  text-decoration: none;
 }
